@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class ProductTest < ActiveSupport::TestCase
@@ -27,12 +29,12 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   def new_product(image_url)
-    Product.new(title: "Test title", description: "Test description", image_url: image_url, price: 1)
+    Product.new(title: "Test title", description: "Test description", image_url:, price: 1)
   end
 
   test "image url pattern" do
-    ok = %w{ fred.gif fred.jpg fred.png FRED.JPG FRED.Jpg http://a.b.c/x/y/z/fred.gif }
-    bad = %w{ fred.doc fred.gif/more fred.gif.more }
+    ok = %w[fred.gif fred.jpg fred.png FRED.JPG FRED.Jpg http://a.b.c/x/y/z/fred.gif]
+    bad = %w[fred.doc fred.gif/more fred.gif.more]
 
     ok.each do |image_url|
       assert new_product(image_url).valid?, "#{image_url} must be valid"
@@ -43,9 +45,9 @@ class ProductTest < ActiveSupport::TestCase
     end
   end
 
-  test "product is not valid without a unique title" do 
+  test "product is not valid without a unique title" do
     product = Product.new(title: products(:ruby).title, description: "yyy", price: 1, image_url: "fred.gif")
     assert product.invalid?
-    assert_equal [I18n.translate('errors.messages.taken')], product.errors[:title] 
+    assert_equal [I18n.translate("errors.messages.taken")], product.errors[:title]
   end
 end
