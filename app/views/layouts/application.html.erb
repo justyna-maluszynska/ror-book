@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <header class="bg-green-800">
-      <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf'%>
+    <header class="bg-green-700">
+      <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
       <h1><%= @page_title %></h1>
     </header>
     <section class="flex">
@@ -23,7 +22,6 @@
           <li><a href="/news">News</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
-        <h2><%= @current_time %></h2>
       </nav>
       <main class="container mx-auto mt-4 px-5 flex">
         <%= yield %>
